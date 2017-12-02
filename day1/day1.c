@@ -1,6 +1,12 @@
 #include<stdio.h>
 #include<string.h>
 
+
+int Opposite(int index, int len)
+{
+	return (index+(len/2))%len;
+}
+
 int main(void)
 {
 	char input[]= "21752342814933766938172121674976879111362417653261522357855816893656462449168377" \
@@ -31,7 +37,8 @@ int main(void)
 		      "3761476647491752672125623215677285757658448932327189714712898411716428689488521" \
 		      "36818661741238178676857381583155547755219837116125995361896562498721571413742";
 	
-	int prev, sum = 0;
+	int prev, sum1 = 0;
+	int sum2 = 0;
 
 	prev = input[strlen(input) - 1] - '0';
 
@@ -42,12 +49,26 @@ int main(void)
 
 		if(current == prev)
 		{
-			sum += current;	
+			sum1 += current;	
 		}	
 		prev = current;
 	}	
 
-	printf("%d\n", sum);
+	for(int i = 0; i < strlen(input); i++)
+	{
+		int current = input[i] - '0';
+
+		int opposite = input[Opposite(i, strlen(input))] - '0';
+		
+		if(current == opposite)
+		{
+			sum2 += current;	
+		}	
+		prev = current;
+	}
+	
+	printf("Part1: %d\n", sum1);
+	printf("Part2: %d\n", sum2);
 
 	return 0;
 }
