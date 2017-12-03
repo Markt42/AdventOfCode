@@ -21,12 +21,12 @@ int main()
 
 	printf("x = 0, y = 1, is %d\n",input[1][0]);
 	
-	int largest, smallest, sum, current;
-	sum = largest = 0;
+	int largest, smallest, sum1, current, sum2;
+	sum1 = largest = sum2 = 0;
 	smallest = 1000000;
 
 	for(int i = 0; i < 16; i++){
-		for(int j = 0; j < 16; j ++){
+		for(int j = 0; j < 16; j++){
 			current = input[i][j];
 			if(current < smallest)
 			{
@@ -37,12 +37,27 @@ int main()
 				largest = current;
 			}
 		}
-		sum += (largest - smallest);
+		sum1 += (largest - smallest);
 		largest = 0;
 		smallest = 10000000;
 	}
 	
-	printf("sum = %d\n",sum);
+	/*------------------------Part2-----------------------*/
+
+	int check = 0;
+	for(int i = 0; i < 16; i++){
+		for(int j = 0; j < 16; j++){
+			current = input[i][j];
+			for(int k = 0; k < 16; k++){
+				check = input[i][k];
+				if(j != k && current%check == 0 && current>check){
+					sum2 += current/check;
+				}	
+			}
+		}	
+	}	
+
+	printf("sum1 = %d\nsum2 = %d\n",sum1, sum2);
 
 	return 0;
 }
