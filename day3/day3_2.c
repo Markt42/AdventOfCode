@@ -54,11 +54,18 @@ int GetValueFromDir(int** array, int x, int y, int dir)
 	}
 }
 
-int CalculateValue(int** array, int x, int y);
+int CalculateValue(int** array, int x, int y)
 {
 	int sum = 0;
 
-	
+	sum += GetValueFromDir(array,x-1, y,NORTH);
+	sum += GetValueFromDir(array,x,y,NORTH);
+	sum += GetValueFromDir(array,x+1, y, NORTH);
+	sum += GetValueFromDir(array,x,y,WEST);
+	sum += GetValueFromDir(array,x,y,EAST);
+	sum += GetValueFromDir(array,x-1,y,SOUTH);
+	sum += GetValueFromDir(array,x,y,SOUTH);
+	sum += GetValueFromDir(array,x+1,y,SOUTH);
 	
 	return sum;
 }
